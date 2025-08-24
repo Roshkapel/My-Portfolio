@@ -24,3 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.btn_style').addEventListener('click', function () {
     this.parentElement.classList.toggle('open')});
 
+  document.getElementById('home-link').addEventListener('click', function (e) {
+    e.preventDefault(); // prevent default anchor behavior
+    location.reload();  // reloads the page
+  });

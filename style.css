@@ -9,7 +9,11 @@ body, html {
     width: 100%;
     box-sizing: border-box;
     white-space: normal;
+}
 
+
+html {
+  scroll-behavior: smooth;
 }
 
  h2, h3, h4 {
