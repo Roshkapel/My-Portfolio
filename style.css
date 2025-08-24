@@ -67,6 +67,7 @@ html {
 }
 
 .side_panel{
+    
     position: relative;
     grid-column: 3/4;
     grid-row: 1/9;

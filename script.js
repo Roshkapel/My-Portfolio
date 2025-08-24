@@ -25,6 +25,6 @@ window.addEventListener('DOMContentLoaded', () => {
     this.parentElement.classList.toggle('open')});
 
   document.getElementById('home-link').addEventListener('click', function (e) {
-    e.preventDefault(); // prevent default anchor behavior
-    location.reload();  // reloads the page
+    e.preventDefault(); 
+    location.reload();  
   });
