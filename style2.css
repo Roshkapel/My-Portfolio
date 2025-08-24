@@ -1,0 +1,699 @@
+
+
+/*we are going to need 8 rows with three rows in the fifth column and two columns General*/
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+
+}
+
+ h2, h3, h4 {
+    color: rgb(28, 55, 107);
+}
+
+.navbar {
+  top: 0;
+  position: sticky;
+  padding: 1em;
+  /* background-color: white; */
+  background: linear-gradient(to bottom, rgb(28, 55, 107,0.8), rgb(6, 20, 46));
+  border-bottom: 1px solid rgb(7, 20, 44);
+  /* margin: 0 2em; */
+  /* background-image: url(BGround.jpeg); */
+  z-index: 1000;
+}
+
+.navbar::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(BGround.jpeg); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2; /* Control image visibility */
+    z-index: -1; 
+    transition: transform 0.5s ease;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 3em;
+}
+
+.nav-list li a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.container{
+    display: grid;
+    z-index: 10;
+    /* grid-template-rows: auto 2fr 4fr 3fr 3fr 6fr 2fr; */
+    grid-template-rows: repeat(6, auto);
+    grid-template-columns: 2fr 6fr 1fr;
+    grid-template-areas:
+    '. header side_panel'
+    'menu summary side_panel'
+    'menu education side_panel'
+    'menu relevant_title side_panel'
+    'menu technical side_panel'
+    'menu technical side_panel';
+
+    /* grid-gap: 5px; */
+    height:auto;
+    /* margin: 0 2em; */
+    position: relative;
+     /* background-color: rgba(255,255,255,0.9); */
+
+}
+
+/* .container > * {
+     border: 1px solid grey;
+     border-radius: .2em;
+    border: 1px solid red;
+} */
+
+.side_panel{
+    grid-area: side_panel;
+    background-image: url(BG2.jpeg);
+    opacity: 0.9;
+    background-size: cover ;
+    background-repeat: no-repeat;
+    background-position: right;
+    position: relative;
+    z-index: 1;
+
+    /* border-left: 2px solid rgb(5, 5, 67); */
+
+}
+
+/* .side_panel::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(255, 255, 255, 0.9); Adjust color and opacity
+    z-index: 2;
+} */
+
+
+/* .side_panel::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    z-index: 2;
+    pointer-events: none;
+    box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.5); 
+    border-radius: 8px;
+} */
+
+/* Ensure actual content appears above the overlay */
+.side_panel > * {
+    position: relative;
+    z-index: 3;
+}
+
+.header{
+    display: flex;
+    flex-direction: column; /* stack elements vertically */
+    align-items: center; 
+    grid-area: header;
+
+    margin: 0px;
+    padding:0px 2em;
+
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    background-color: whitesmoke;
+}
+
+.header p{
+    line-height: auto;
+    padding: 0px;
+    margin: 2px;
+}
+
+.summary{
+    grid-area: summary;
+    background-color: whitesmoke;
+
+    /* position:relative; */
+}
+
+.education{
+    grid-area: education;
+    background-color: whitesmoke;
+}
+
+.education h4{
+    margin-bottom: 1px;
+}
+
+.education ul li p{
+    margin:2px;
+    margin-right: 2em;
+    padding:2px;
+}
+
+.education a{
+  padding-left: 1em;
+}
+.relevant{
+    grid-area: relevant;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+    margin:0px;
+    padding:0px;
+
+    background-color: whitesmoke;
+  
+}
+
+.relevant_title{
+    grid-area: relevant_title;
+    display: flex;
+    margin:0px;
+    padding:0px;
+    max-height: 30px;
+    justify-content:center;
+    align-content:center;
+}
+.technical{
+    grid-area: technical;
+    display: grid;
+    height: 200px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
+    background-color: whitesmoke;
+}
+.mis{
+
+   
+    top: 51px;
+    position: sticky;
+    overflow: hidden;
+    grid-row: 1 /3;
+    grid-column: 1 / 2;
+
+
+    border: 1px solid rgb(5, 5, 67);
+    height: 300px;
+    transition: height 0.3s ease;
+
+    width: calc((100% - 6em) * (1/7)); /* 1fr of 1fr 5fr layout */
+    max-width: 100%;
+    background: linear-gradient(to bottom, rgb(28, 55, 107, 0.7), rgb(29, 57, 110));
+
+    z-index: 10;
+}
+
+.mis::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(BGround.jpeg); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4; /* Control image visibility */
+    z-index: -1; /* Send it behind .mis content */
+    transition: transform 0.5s ease;
+}
+
+.menu{
+    grid-area: menu;
+    grid-row: 2/7;
+    display: grid;
+    grid-auto-rows: auto;
+    border-right: 2px solid rgb(5, 5, 67);
+    border-top: 3px  rgb(5,5,67);
+
+    /* background: linear-gradient(to bottom, rgb(28, 55, 107), rgb(29, 57, 110)); */
+    /* grid-gap: 4px; */
+
+    /* background: linear-gradient(to bottom, rgb(237, 247, 247), rgb(73, 98, 166)); */
+    min-height: 200px;
+    overflow: auto;
+    transition: margin-top 0.3s ease;
+
+    background-color: rgb(245, 245, 245, 0.7);
+    
+}
+
+
+.menu ul {
+    list-style: none;
+    padding: 4px;
+    margin: 0;
+}
+
+.menu ul li {
+    padding: 2px;
+    margin-left: 1em;
+    margin-right: 1em;
+    text-align: left;
+   /* font-size: smaller; */
+}
+
+.menu h4{
+    text-align: center;
+}
+
+
+.mis.open ~ .menu {
+    margin-top: 100px; /* Match expanded .mis height */
+}
+
+
+.tech_xp{
+    grid-area: tech_xp;
+}
+.prof_xp{
+    grid-area: prof_xp;
+}
+
+
+/* .relevant >*{
+     border: 1px solid grey;
+     border-radius: .2em;
+    border: 1px solid blue;
+}
+.technical >*{
+     border: 1px solid grey;
+     border-radius: .2em;
+    border: 1px solid blue;
+} */
+
+
+
+pre{
+    padding: 0px;
+}
+.content{
+    line-height:1.6px;
+    letter-spacing:0.5px;
+    word-spacing: 4px;
+    
+}
+
+
+
+.hilights_and_headings{
+    font-weight: bold;
+    color: rgb(28, 55, 107);
+}
+
+.project_background{
+   
+ position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+  z-index: 0;
+  background-color: rgb(52, 91, 163);
+  border-radius: .5em;
+
+transition: background-color 0.4s ease;
+}
+
+.project_background:hover {
+  background-color: rgb(28, 55, 107);
+}
+
+.project_background::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+   background-image: url(project_pic.webp);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2; /* This controls the image transparency */
+  z-index: -1;
+
+  transition: transform 0.5s ease;
+  transform: scale(1);
+}
+
+.project_background:hover::before {
+  transform: scale(1.1); /* Slight zoom-in effect */
+}
+
+.repos_background{
+   
+ position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+  background-color: rgb(52, 91, 163);
+  border-radius: .5em;
+  z-index: 0;
+
+  transition: background-color 0.4s ease;
+}
+
+ .repos_background:hover {
+  background-color: rgb(28, 55, 107);
+}
+
+.repos_background::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+   background-image: url(repos_pic.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2; /* This controls the image transparency */
+  z-index: -1;
+
+  transition: transform 0.5s ease;
+  transform: scale(1);
+}
+
+.repos_background:hover::before {
+  transform: scale(1.1); /* Slight zoom-in effect */
+}
+
+.gallery_background{
+   
+ position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+  background-color: rgb(52, 91, 163);
+  border-radius: .5em;
+  z-index: 0;
+
+  transition: background-color 0.4s ease;
+}
+
+ .gallery_background:hover {
+  background-color: rgb(28, 55, 107);
+}
+
+.gallery_background::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(gallery_pic.webp);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2; /* This controls the image transparency */
+  z-index: -1;
+
+  transition: transform 0.5s ease;
+  transform: scale(1);
+}
+
+.gallery_background:hover::before {
+  transform: scale(1.1); /* Slight zoom-in effect */
+}
+
+.sub_headings{
+    padding-left: 2em;
+    padding-right:2em;
+    text-align:left;
+}
+
+
+.drop_content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    
+}
+
+.drop_content ul{
+    margin-top: 50px;
+    list-style: none;
+    padding: 4px 0 0 1.5em;
+    margin-bottom: 0px;
+    
+}
+
+.drop_content ul li{
+  
+    padding-top: 4px;
+    color: whitesmoke;
+  
+}
+.mis.open .drop_content {
+    max-height: 300px;
+}
+
+.set_img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.set_img2{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    margin-top:0;
+    height:70px;
+    border-bottom: 1px solid rgb(5, 5, 67);
+    /* background-color: rgb(56, 106, 243); */
+    border-radius: .2em;
+
+}
+
+.btn_style {
+    margin: 2em 0 0 0;
+    height:60px;
+    width: 80%;
+    text-align: right;
+    justify-content: center;
+    background-color: whitesmoke;
+    border-right: 1px solid whitesmoke;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    border-top-right-radius: 4em;
+    border-bottom-right-radius: 4em;
+
+    
+}
+
+
+.logo{
+    height: 120px;
+    width:70%;
+    display: block;
+     /* background-size: cover; */
+    /* background-position:center;
+    background-repeat: no-repeat; */
+    opacity: .85;
+    
+}
+.logo2{
+    height: 100px;
+    width:30%;
+    display: block;
+     /* background-size: cover; */
+    /* background-position:center;
+    background-repeat: no-repeat; */
+    opacity: .95;
+    padding-left: 0px;
+    margin-left: 0px;
+    /* border-bottom: 1px solid rgb(5,5,67); */
+    /* border-right: 1px solid rgb(5,5,67); */
+    border-radius:4em;
+}
+
+.portfolio_pic {
+    /* border-radius: 4em; */
+    width: 50px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    padding: 0px;
+}
+
+.portfolio_pic2 {
+    /* border-radius: 4em; */
+    width: 100%;
+    max-width: 50%;
+    height: 40%;
+    margin-top: 30%;
+    margin-bottom: 0px;
+    /* margin-left: 2em; */
+
+    animation: spin 24s linear infinite;
+    position: relative; /* or absolute/fixed if you're positioning it centrally */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+
+.side_pic {
+    top: 5%;
+    left: 0%;
+}
+
+.side_pic2 {
+
+    top: 50%;
+    left: 0%;
+}
+
+.background-image {
+  position: absolute; /* so it doesn't take space */
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%); 
+  transform-origin: center;
+
+  width: 50%; /* adjust size */
+  opacity: 0.05; /* transparency */
+  pointer-events: none; /* so it doesn't block clicks */
+  z-index: 0; /* behind content */
+
+   /* animation: spin 4s linear infinite; */
+}
+
+
+.background-image2 {
+  position: absolute; /* so it doesn't take space */
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%); 
+  transform-origin: center;
+
+  width: 100%; /* adjust size */
+  max-width: 100vw;
+  opacity: 0.05; /* transparency */
+  pointer-events: none; /* so it doesn't block clicks */
+  z-index: 0; /* behind content */
+
+  max-width: 100vw;
+  overflow-x: hidden;
+
+   /* animation: spin 4s linear infinite; */
+}
+
+.background-image3 {
+  position: absolute; /* so it doesn't take space */
+  top: 20%;
+  left: 10%;
+  transform: translate(-50%, -50%); 
+  transform-origin: center;
+
+  width: 90%; /* adjust size */
+  opacity: 0.05; /* transparency */
+  pointer-events: none; /* so it doesn't block clicks */
+  z-index: 0; /* behind content */
+
+    max-width: 100vw;
+  overflow-x: hidden;
+
+   /* animation: spin 4s linear infinite; */
+}
+
+.background-image4 {
+  position: absolute; /* so it doesn't take space */
+  top: 70%;
+  left: 5%;
+  transform: translate(-50%, -50%); 
+  transform-origin: center;
+
+  width: 40%; /* adjust size */
+  opacity: 0.05; /* transparency */
+  pointer-events: none; /* so it doesn't block clicks */
+  z-index: 0; /* behind content */
+
+}
+
+.icon_Pics {
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 50px;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+
+.footer {
+  padding: 1em;
+  /* margin: 0 2em; */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1em;
+}
+
+.footer-links li a {
+  text-decoration: none;
+}
+
+* {
+  outline: 1px solid red;
+}

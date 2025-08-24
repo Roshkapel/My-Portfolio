@@ -1,0 +1,143 @@
+
+
+/* This is an example of css-grid techniques*/
+
+/* First we have a container class with 5 rows and 5 columns as you can see*/
+.container {
+    display: grid;
+    grid-template-rows: 100px 100px 100px 100px 100px;
+    grid-template-columns: 100pc 100px 100px 100px 100px;
+}
+
+/* this is an item class that would define how much space an item would take up on our grid
+This is especially good for anchoring the elements to certain areas the grid use lines to define start and end
+the grid below starts on line 1 for the row and ends on line 3 of the row,*/
+.item {
+    grid-row: 1/3;
+    grid-column:1/5;
+}
+
+/*This does the same as grid-row and grid-column with anchoring and everything but its faster
+the numbers represent the following in the same sequence - i.e row-start col-start row-end col-end*
+As you see the first is the starting line on the rows and the second is the starting line on the column etc, "-1" means last line*/
+.item_2 {
+    grid-area: 3/1/-1/-1
+}
+
+/*NOTE use grid area along with anchoring technique (explicitly defining start and end) to layer items on top of each other along with using the 'Z' index.
+See Below - NOTE we overlapped the dimensions defined above and used z-index to place grid in front*/
+
+.layering{
+    grid-area: 2/4/4/6;
+    z-index: 1;
+}
+
+/*Use grid-auto rows or grid-auto columns along with grid-flow to define grids/rows that will be added automatically for an implicity added grid
+An implicitly added grid/row is a space added when you add a new item without defining a grid-row or grid-column for
+Space sixes include px, % values ex 100%, em, rem, or even fr(fractional unit), also use minmax function to handle how size response to smaller pages
+*/
+
+/*The minmax functions take two arguments, the first is the minimum size and the second is the maximum value*/
+
+.container_2 {
+    display: grid;
+    grid-template-rows: 100px 100px;
+    grid-template-columns: 100px minmax(100px, 3fr) 1fr
+}
+
+/* Use the repeat function. This is useful for defining columns/rows that will have the same dimension, instead of manually tying 100px 100px like the container defined above
+Then there is also grid-gap - this is used to add gaps between rows/colums if you add two numbers the first is the gap on the rows and the second is the gap on the columns
+if just one value it adds an equal gap to both grids and columns*/
+.container_3{
+    display: grid;
+    grid-template-rows: repeat(2,100px);
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 1em
+}
+
+/* The fr unit represents a fractional unit of the availbale space so for example if you type 1fr 1fr 1fr in your tempate-columns 
+you will end up with three columns that take up equal space, if one wss to be 2fr obviously it would take up more space
+If using grid-area in your cntainer it is used as grid-template-areas*/
+
+/*Using the quotes - each set of quotes represent a row and each value inside the quoye represent a column
+Then you can use classes to asign elements to each grid note this style makes layering things on top of each other more difficult*/
+.container_4{
+    display: grid;
+    grid-template-rows: repeat(2, 100px);
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas:
+    'header header'
+    'main aside'
+    'footer footer';
+}
+
+.item4 {
+    grid-area: header;
+}
+.item5 {
+    grid-area: main;
+}
+.item6 {
+    grid-area: aside;
+}
+
+.item {
+    grid-area: footer
+}
+
+
+/*NOTE in the background, items (justify and align) both have a default of stretch - Use justify-items along with align-items (use together) to shift position of items
+See below - You can set justify to center, end, baseline, start
+Justify aligns items on the row axis and align items aligns the items on the column axis */
+.newContainer {
+display: grid;
+grid-template-rows: repeat(4, 100px);
+grid-template-columns: repeat(4, 1fr);
+justify-items: start;
+align-items:end ;
+}
+/*To justify/align items specifically - use justify-self/ align-self - See Example below*/
+.newContainer2 {
+display: grid;
+grid-template-rows: repeat(4, 100px);
+grid-template-columns: repeat(4, 1fr);
+justify-items: start;
+align-items: end;
+}
+
+.item10{
+    justify-self: center;
+    align-self: stretch;
+}
+
+/*we can alihn the grids themselves with justify-content and align-content - They take the following values:
+space-evenly, start, end, center, baseline, space-between, space-around. Again justify works on row axis and align works on column axis*/
+.newContainer2 {
+display: grid;
+grid-template-rows: repeat(4, 100px);
+grid-template-columns: repeat(4, 1fr);
+justify-items: start;
+align-items: end;
+}
+
+/*Create a responsive grid - useful for viewport size changes (smaller screens etc*
+To do this use auto fit keyword*/
+
+.newContainer2 {
+display: grid;
+grid-template-rows: repeat(4, 100px);
+grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+justify-items: start;
+align-items: end;
+}
+
+/* Use display flex for horizontal display and flex direction to change direction from horizontal to vertical See Below*/
+
+.nextContainer{
+    display: flex;
+    flex-direction: column /*for setting to vertical - it is set to row by default*/
+
+}
+
+/*When using flex - align-content is only unlocked when flex-wrap is set to wrap - flex wrap allows items to wrap (find new space)
+NOTE there are children of flex (used on classes under flex box - they are flex groe and flex shrink and flex basis*/
